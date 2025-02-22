@@ -1,8 +1,12 @@
 <x-layout-app page-title="Home">
-    <p class="display-6 text-center my-5">Home Page</p>
+   
+    <div class="w-100 p-4">
 
-    @can('admin')
-        <p class="text-center">You are an admin</p>
-    @endcan
+        <h3>Home</h3>
+
+        <hr>
+
+
+    </div>
     
 </x-layout-app>
