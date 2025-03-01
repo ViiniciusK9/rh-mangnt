@@ -16,6 +16,8 @@ class User extends Authenticatable
         'email',
         'password',
         'department_id',
+        'role',
+        'permissions',
     ];
 
     public function detail()

@@ -45,5 +45,12 @@ class AdminSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
+        // RH department
+        DB::table('departments')->insert([
+            'name' => 'Human Resources',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 }
