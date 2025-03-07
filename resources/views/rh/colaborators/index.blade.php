@@ -2,21 +2,21 @@
 
     <div class="w-100 p-4">
 
-        <h3>Human Resources Colaborators</h3>
+        <h3>Human Resources Collaborators</h3>
 
-        @if ($colaborators->count() === 0)
+        @if ($collaborators->count() === 0)
             <hr>
 
             <div class="text-center my-5">
-                <p>No colaborators found.</p>
-                <a href="{{ route('rh.colaborators.create') }}" class="btn btn-primary">Create a new colaborator</a>
+                <p>No collaborators found.</p>
+                <a href="{{ route('rh.collaborators.create') }}" class="btn btn-primary">Create a new collaborator</a>
             </div>
         @else
             <hr>
 
             <div class="mb-3">
-                <a href="{{ route('rh.colaborators.create') }}" class="btn btn-sm btn-primary p-2">Create a new
-                    colaborator</a>
+                <a href="{{ route('rh.collaborators.create') }}" class="btn btn-sm btn-primary p-2">Create a new
+                    collaborator</a>
             </div>
 
             <table class="table" id="table">
@@ -31,23 +31,23 @@
                 </thead>
                 <tbody>
 
-                    @foreach ($colaborators as $colaborator)
+                    @foreach ($collaborators as $collaborator)
                         @php
-                            $permissions = json_decode($colaborator->permissions);
+                            $permissions = json_decode($collaborator->permissions);
                         @endphp
                         <tr>
-                            <td>{{ $colaborator->name }}</td>
-                            <td>{{ $colaborator->email }}</td>
-                            <td>{{ $colaborator->role }}</td>
+                            <td>{{ $collaborator->name }}</td>
+                            <td>{{ $collaborator->email }}</td>
+                            <td>{{ $collaborator->role }}</td>
                             <td>{{ implode(', ', $permissions) }}</td>
-                            <td>{{ $colaborator->detail->admission_date }}</td>
-                            <td>{{ $colaborator->detail->city }}</td>
+                            <td>{{ $collaborator->detail->admission_date }}</td>
+                            <td>{{ $collaborator->detail->city }}</td>
                             <td>
                                 <div class="d-flex gap-3 justify-content-end">
-                                    <a href="{{ route('departments.edit', ['department' => $colaborator->id]) }}"
+                                    <a href="{{ route('departments.edit', ['department' => $collaborator->id]) }}"
                                         class="btn btn-sm btn-outline-success"><i
                                             class="fa-regular fa-pen-to-square me-2"></i>Edit</a>
-                                    <a href="{{ route('departments.delete', ['department' => $colaborator->id]) }}"
+                                    <a href="{{ route('departments.delete', ['department' => $collaborator->id]) }}"
                                         class="btn btn-sm btn-outline-danger"><i
                                             class="fa-regular fa-trash-can me-2"></i>Delete</a>
                                 </div>

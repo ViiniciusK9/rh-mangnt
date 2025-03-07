@@ -1,12 +1,12 @@
-<x-layout-app page-title="New RH Colaborator">
+<x-layout-app page-title="New RH Collaborator">
 
     <div class="w-100 p-4">
 
-        <h3>New Human Resources Colaborator</h3>
+        <h3>New Human Resources Collaborator</h3>
 
         <hr>
 
-        <form action="{{ route('rh.colaborators.store') }}" method="post">
+        <form action="{{ route('rh.collaborators.store') }}" method="post">
 
             @csrf
 
@@ -135,9 +135,9 @@
                 </div>
 
                 <div class="mt-3">
-                    <a href="{{ route('rh.colaborators') }}"
+                    <a href="{{ route('rh.collaborators') }}"
                         class="btn btn-sm p-2 btn-outline-danger me-3">Cancel</a>
-                    <button type="submit" class="btn btn-sm p-2 btn-primary">Create colaborator</button>
+                    <button type="submit" class="btn btn-sm p-2 btn-primary">Create collaborator</button>
                 </div>
             </div>
         </form>

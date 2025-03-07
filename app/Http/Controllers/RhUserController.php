@@ -13,9 +13,9 @@ class RhUserController extends Controller
     {
         Auth::user()->can('admin') ?: abort(403, 'You are not authorized to access this page.');
 
-        $colaborators = User::with('detail')->where('role', 'rh')->get();
+        $collaborators = User::with('detail')->where('role', 'rh')->get();
 
-        return view('rh.colaborators.index', compact('colaborators'));
+        return view('rh.collaborators.index', compact('collaborators'));
     }
 
     public function create()
@@ -24,7 +24,7 @@ class RhUserController extends Controller
 
         $departments = Department::all();
 
-        return view('rh.colaborators.create', compact('departments'));
+        return view('rh.collaborators.create', compact('departments'));
     }
 
     public function store(Request $request)
@@ -64,6 +64,19 @@ class RhUserController extends Controller
             'admission_date' => $request->admission_date,
         ]);
 
-        return redirect()->route('rh.colaborators')->with('success', 'Colaborator created successfully.');
+        return redirect()->route('rh.collaborators')->with('success', 'Collaborator created successfully.');
+    }
+
+    public function edit(User $collaborator)
+    {
+        Auth::user()->can('admin') ?: abort(403, 'You are not authorized to access this page.');
+
+        if ($collaborator->role != 'rh') {
+            return redirect()->route('home');
+        }
+
+        $departments = Department::all();
+
+        return view('rh.collaborators.edit', compact('collaborator', 'departments'));
     }
 }
