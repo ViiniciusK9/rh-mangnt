@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ConfirmAccountEmail;
 use App\Models\Department;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class RhUserController extends Controller
 {
@@ -47,9 +50,12 @@ class RhUserController extends Controller
             return redirect()->route('home');
         }
 
+        $token = Str::random(60);
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'confirmation_token' => $token,
             'role' => 'rh',
             'department_id' => $request->select_department,
             'permissions' => json_encode(['rh']),
@@ -63,6 +69,9 @@ class RhUserController extends Controller
             'salary' => $request->salary,
             'admission_date' => $request->admission_date,
         ]);
+
+        // send email to user
+        Mail::to($user->email)->send(new ConfirmAccountEmail(route('confirm-account', $token)));
 
         return redirect()->route('rh.collaborators')->with('success', 'Collaborator created successfully.');
     }
@@ -104,7 +113,7 @@ class RhUserController extends Controller
     }
 
     public function destroy(Request $request)
-    {   
+    {
         Auth::user()->can('admin') ?: abort(403, 'You are not authorized to access this page.');
 
         User::findOrFail($request->id)->delete();
