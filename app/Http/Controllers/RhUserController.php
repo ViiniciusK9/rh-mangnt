@@ -67,16 +67,48 @@ class RhUserController extends Controller
         return redirect()->route('rh.collaborators')->with('success', 'Collaborator created successfully.');
     }
 
+    public function update(Request $request)
+    {
+        Auth::user()->can('admin') ?: abort(403, 'You are not authorized to access this page.');
+
+        $request->validate([
+            'id' => 'required|exists:users,id',
+            'salary' => 'required|decimal:2',
+            'admission_date' => 'required|date_format:Y-m-d',
+        ]);
+
+        $collaborator = User::find($request->id);
+
+        $collaborator->detail()->update([
+            'salary' => $request->salary,
+            'admission_date' => $request->admission_date,
+        ]);
+
+        return redirect()->route('rh.collaborators')->with('success', 'Collaborator updated successfully.');
+    }
+
     public function edit(User $collaborator)
     {
         Auth::user()->can('admin') ?: abort(403, 'You are not authorized to access this page.');
 
-        if ($collaborator->role != 'rh') {
-            return redirect()->route('home');
-        }
+        $collaborator->load('detail');
 
-        $departments = Department::all();
+        return view('rh.collaborators.edit', compact('collaborator'));
+    }
 
-        return view('rh.collaborators.edit', compact('collaborator', 'departments'));
+    public function delete(User $collaborator)
+    {
+        Auth::user()->can('admin') ?: abort(403, 'You are not authorized to access this page.');
+
+        return view('rh.collaborators.delete', compact('collaborator'));
+    }
+
+    public function destroy(Request $request)
+    {   
+        Auth::user()->can('admin') ?: abort(403, 'You are not authorized to access this page.');
+
+        User::findOrFail($request->id)->delete();
+
+        return redirect()->route('rh.collaborators')->with('success', 'Collaborator deleted successfully.');
     }
 }

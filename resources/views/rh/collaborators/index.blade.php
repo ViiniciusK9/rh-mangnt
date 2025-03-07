@@ -44,10 +44,10 @@
                             <td>{{ $collaborator->detail->city }}</td>
                             <td>
                                 <div class="d-flex gap-3 justify-content-end">
-                                    <a href="{{ route('departments.edit', ['department' => $collaborator->id]) }}"
+                                    <a href="{{ route('rh.collaborators.edit', ['user' => $collaborator->id]) }}"
                                         class="btn btn-sm btn-outline-success"><i
                                             class="fa-regular fa-pen-to-square me-2"></i>Edit</a>
-                                    <a href="{{ route('departments.delete', ['department' => $collaborator->id]) }}"
+                                    <a href="{{ route('rh.collaborators.delete', ['user' => $collaborator->id]) }}"
                                         class="btn btn-sm btn-outline-danger"><i
                                             class="fa-regular fa-trash-can me-2"></i>Delete</a>
                                 </div>

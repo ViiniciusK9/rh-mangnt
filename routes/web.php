@@ -27,7 +27,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/rh/collaborators', [RhUserController::class, 'index'])->name('rh.collaborators');
     Route::get('/rh/collaborators/create', [RhUserController::class, 'create'])->name('rh.collaborators.create');
     Route::post('/rh/collaborators/store', [RhUserController::class, 'store'])->name('rh.collaborators.store');
-    // Route::get('/rh/collaborators/{user}/edit', [RhUserController::class, 'edit'])->name('rh.collaborators.edit');
-    // Route::get('/rh/collaborators/{user}/delete', [RhUserController::class, 'delete'])->name('rh.collaborators.delete');
-    // Route::post('/rh/collaborators/destroy', [RhUserController::class, 'destroy'])->name('rh.collaborators.destroy');
+    Route::get('/rh/collaborators/{user}/edit', [RhUserController::class, 'edit'])->name('rh.collaborators.edit');
+    Route::post('/rh/collaborators/update', [RhUserController::class, 'update'])->name('rh.collaborators.update');
+    Route::get('/rh/collaborators/{user}/delete', [RhUserController::class, 'delete'])->name('rh.collaborators.delete');
+    Route::post('/rh/collaborators/destroy', [RhUserController::class, 'destroy'])->name('rh.collaborators.destroy');
 });
