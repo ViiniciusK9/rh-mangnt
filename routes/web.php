@@ -6,8 +6,13 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RhUserController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('auth')->group(function () {
+Route::middleware('guest')->group(function () {
+    // Confirm account
+    Route::get('/confirm-account/{token}', [ConfirmAccountController::class, 'confirmAccount'])->name('confirm-account');
+    Route::post('/confirm-account', [ConfirmAccountController::class, 'confirmAccountSubmit'])->name('confirm-account-submit');
+});
 
+Route::middleware('auth')->group(function () {
     Route::redirect('/', '/home');
     Route::view('/home', 'home')->name('home');
 
@@ -33,6 +38,3 @@ Route::middleware('auth')->group(function () {
     Route::get('/rh/collaborators/{user}/delete', [RhUserController::class, 'delete'])->name('rh.collaborators.delete');
     Route::post('/rh/collaborators/destroy', [RhUserController::class, 'destroy'])->name('rh.collaborators.destroy');
 });
-
-// Confirm account
-Route::get('/confirm-account/{token}', [ConfirmAccountController::class, 'confirmAccount'])->name('confirm-account');
