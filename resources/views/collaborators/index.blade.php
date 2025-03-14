@@ -1,23 +1,18 @@
-<x-layout-app page-title="Human resources">
+<x-layout-app page-title="Collaborators">
 
     <div class="w-100 p-4">
+        <h3>All collaborators</h3>
 
-        <h3>Human Resources Collaborators</h3>
+        <hr>
 
         @if ($collaborators->count() === 0)
             <hr>
 
             <div class="text-center my-5">
                 <p>No collaborators found.</p>
-                <a href="{{ route('rh.collaborators.create') }}" class="btn btn-primary">Create a new collaborator</a>
             </div>
         @else
             <hr>
-
-            <div class="mb-3">
-                <a href="{{ route('rh.collaborators.create') }}" class="btn btn-sm btn-primary p-2">Create a new
-                    collaborator</a>
-            </div>
 
             <table class="table" id="table">
                 <thead class="table-dark">
@@ -55,11 +50,9 @@
                             <td>{{ $collaborator->detail->salary }}</td>
                             <td>
                                 <div class="d-flex gap-3 justify-content-end">
-                                    <a href="{{ route('rh.collaborators.edit', ['user' => $collaborator->id]) }}"
-                                        class="btn btn-sm btn-outline-success"><i
-                                            class="fa-regular fa-pen-to-square me-2"></i>Edit</a>
-                                    <a href="{{ route('rh.collaborators.delete', ['user' => $collaborator->id]) }}"
-                                        class="btn btn-sm btn-outline-danger"><i
+                                    <a href="#" class="btn btn-sm btn-outline-success"><i
+                                            class="fas fa-eye me-2"></i>Details</a>
+                                    <a href="#" class="btn btn-sm btn-outline-danger"><i
                                             class="fa-regular fa-trash-can me-2"></i>Delete</a>
                                 </div>
                             </td>

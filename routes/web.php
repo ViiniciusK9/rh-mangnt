@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CollaboratorsController;
 use App\Http\Controllers\ConfirmAccountController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ProfileController;
@@ -37,4 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/rh/collaborators/update', [RhUserController::class, 'update'])->name('rh.collaborators.update');
     Route::get('/rh/collaborators/{user}/delete', [RhUserController::class, 'delete'])->name('rh.collaborators.delete');
     Route::post('/rh/collaborators/destroy', [RhUserController::class, 'destroy'])->name('rh.collaborators.destroy');
+
+    // Admin collaborators list
+    Route::get('/collaborators', [CollaboratorsController::class, 'index'])->name('collaborators'); 
 });
