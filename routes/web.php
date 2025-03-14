@@ -38,8 +38,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/rh/collaborators/update', [RhUserController::class, 'update'])->name('rh.collaborators.update');
     Route::get('/rh/collaborators/{user}/delete', [RhUserController::class, 'delete'])->name('rh.collaborators.delete');
     Route::post('/rh/collaborators/destroy', [RhUserController::class, 'destroy'])->name('rh.collaborators.destroy');
+    Route::post('/rh/collaborators/restore', [RhUserController::class, 'restore'])->name('rh.collaborators.restore');
 
     // Admin collaborators list
     Route::get('/collaborators', [CollaboratorsController::class, 'index'])->name('collaborators'); 
     Route::get('/collaborators/{user}', [CollaboratorsController::class, 'show'])->name('collaborators.show');
+    Route::get('/collaborators/{user}/delete', [CollaboratorsController::class, 'delete'])->name('collaborators.delete');
+    Route::post('/collaborators/destroy', [CollaboratorsController::class, 'destroy'])->name('collaborators.destroy');
+    Route::post('/collaborators/restore', [CollaboratorsController::class, 'restore'])->name('collaborators.restore');
+
+    
 });

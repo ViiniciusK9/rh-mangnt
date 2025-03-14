@@ -50,10 +50,17 @@
                             <td>{{ $collaborator->detail->salary }}</td>
                             <td>
                                 <div class="d-flex gap-3 justify-content-end">
-                                    <a href="{{ route('collaborators.show', ['user' => $collaborator->id]) }}" class="btn btn-sm btn-outline-success"><i
-                                            class="fas fa-eye me-2"></i>Details</a>
-                                    <a href="#" class="btn btn-sm btn-outline-danger"><i
-                                            class="fa-regular fa-trash-can me-2"></i>Delete</a>
+                                    
+                                    @empty($collaborator->deleted_at)
+                                        <a href="{{ route('collaborators.show', ['user' => $collaborator->id]) }}" class="btn btn-sm btn-outline-success"><i class="fas fa-eye me-2"></i>Details</a>
+                                        <a href="{{ route('collaborators.delete', ['user' => $collaborator->id]) }}" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash-can me-2"></i>Delete</a>
+                                    @else
+                                        <form action="{{ route('collaborators.restore') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{ $collaborator->id }}">
+                                            <button type="submit" class="btn btn-sm btn-outline-primary"><i class="fas fa-trash-arrow-up me-2"></i>Restore</button>
+                                        </form>
+                                    @endempty
                                 </div>
                             </td>
                         </tr>
