@@ -33,6 +33,6 @@ class ConfirmAccountController extends Controller
             'email_verified_at' => now(),
         ]);
 
-        return redirect()->route('login')->with('success', 'Account confirmed successfully');
+        return view('auth.welcome', compact('user'));
     }
 }
