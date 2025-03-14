@@ -50,7 +50,7 @@
                             <td>{{ $collaborator->detail->salary }}</td>
                             <td>
                                 <div class="d-flex gap-3 justify-content-end">
-                                    <a href="#" class="btn btn-sm btn-outline-success"><i
+                                    <a href="{{ route('collaborators.show', ['user' => $collaborator->id]) }}" class="btn btn-sm btn-outline-success"><i
                                             class="fas fa-eye me-2"></i>Details</a>
                                     <a href="#" class="btn btn-sm btn-outline-danger"><i
                                             class="fa-regular fa-trash-can me-2"></i>Delete</a>

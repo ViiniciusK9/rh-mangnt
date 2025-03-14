@@ -18,4 +18,13 @@ class CollaboratorsController extends Controller
         
         return view('collaborators.index', compact('collaborators'));
     }
+
+    public function show(User $collaborator)
+    {
+        Auth::user()->can('admin', 'rh') ?: abort(403, 'You are not authorized to access this page');
+
+        $collaborator->load('detail', 'department');
+
+        return view('collaborators.show', compact('collaborator'));
+    }
 }
