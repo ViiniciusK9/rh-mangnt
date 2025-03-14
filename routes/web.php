@@ -4,6 +4,7 @@ use App\Http\Controllers\CollaboratorsController;
 use App\Http\Controllers\ConfirmAccountController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RhManagementController;
 use App\Http\Controllers\RhUserController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,6 +40,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/rh/collaborators/{user}/delete', [RhUserController::class, 'delete'])->name('rh.collaborators.delete');
     Route::post('/rh/collaborators/destroy', [RhUserController::class, 'destroy'])->name('rh.collaborators.destroy');
     Route::post('/rh/collaborators/restore', [RhUserController::class, 'restore'])->name('rh.collaborators.restore');
+
+    // RH management
+    Route::get('/rh/management', [RhManagementController::class, 'index'])->name('rh.management');
 
     // Admin collaborators list
     Route::get('/collaborators', [CollaboratorsController::class, 'index'])->name('collaborators'); 
